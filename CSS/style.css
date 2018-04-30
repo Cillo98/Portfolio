@@ -1,0 +1,670 @@
+/* DOCUMENT */
+
+/* custom fonts*/
+@font-face {
+  font-family: 'Open sans';
+  src:  url('../fonts/OpenSans-Regular.ttf');
+}
+@font-face {
+  font-family: 'Open sans';
+  font-weight: bold;
+  src:  url('../fonts/OpenSans-Bold.ttf');
+}
+@font-face {
+  font-family: 'PlayFair';
+  src:  url('../fonts/PlayfairDisplay-Bold.ttf');
+}
+
+html {
+    height: 100%;
+    overflow: hidden;
+}
+body {
+    /* dimensions */
+    height: 100%;
+    width: 100%;
+    
+    /* position */
+    margin: 0;
+    perspective: 1px;
+    
+    /* behavior */
+    transform-style: preserve-3d;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    
+    /* body appearance */
+    font-family: 'Open sans', Helvetica Neue, Arial;
+    color: #333;
+}
+
+
+/*  TEXTs 
+    basically they have all been increased
+    and some centered
+*/
+h1 {
+    font-size: 9em;
+    line-height: 1em;
+    text-align: center;
+    font-family: 'PlayFair', 'Open sans', Arial;
+}
+h2 {
+    font-size: 5em;
+    line-height: 1em;
+    text-align: center;
+}
+h3 {
+    font-size: 2.5em;
+    line-height: 1em;
+    text-align: center;
+}
+h4 {
+    font-size: 1.5em;
+    line-height: 1em;
+    text-align: center;
+    font-weight: normal;
+}
+p {
+    font-size: 1.4em;
+    line-height: 1.25em;
+}
+a {
+    /* remove the underline to links */
+    text-decoration: none;
+}
+
+
+/*  HEADER */
+header {
+    /* make it stick to the top */
+    position: sticky;
+    top: 0;
+    z-index: 101;
+    
+    /* dimensions */
+    height: 80px;
+    width: 100%;
+    
+    /* appearance */
+    background: #6BBF59;
+    border-bottom: 5px solid #095256;
+}
+#menu_logo {
+    /* dimensions */
+    height: 60px;
+    
+    /* position */
+    margin: 10px 15px;
+    float: left;
+    display: block;
+}
+#menu_logo img {
+    /*  as it's contained in the header, its
+        height will match the header's height*/
+    height: 100%;
+}
+nav {
+    /* menu on the right with some nice padding */
+    float: right;
+    padding: 6px 15px;
+}
+nav ul {
+    /* get rid of dots / underline */
+    list-style: none;
+}
+nav ul li {
+    /* position */
+    display: inline-block;
+    float: left;
+    padding: 8px;
+}
+nav ul li a {
+    /* appearance */
+    color: #095256;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+}
+nav ul li a:hover {
+    /* make the menu turn black when hovered */
+    color: #333;
+}
+/* Menu icon for Mobiles */
+#menu_icon {
+    width: 40px;
+    height: 40px;
+    
+    display: hidden;
+    
+    background: #095256 center;
+}
+nav ul li a:hover #menu_icon {
+    border-radius: 4px 4px 0 0;
+}
+
+
+/*  SLIDE IDs for the PARALLAX effect,
+    which is achieved with an alternating
+    combination of translationZs+scale and Z-Indexes
+
+   1st slide (it's me, thomas!)*/
+#slideTop:before {
+    /* parallax trick */
+    background-image: 
+        url("../media/look_up.jpg");
+    transform: 
+        translateZ(-1px) scale(2);
+}
+#slideTop div {
+    /* big div containing 'it's me, thomas!' */
+    width: 100%;
+    margin: -250px auto;
+}
+/* 2nd slide (this dude is awesome)*/
+#slideIntro {
+    background-image: url('../media/pointing.jpg');
+    z-index: 2;
+}
+#slideIntro div {
+    /* medium div containing 'this dude is awesome' */
+    
+    /* dimensions */
+    width: 40%;
+    min-width: 400px;
+    
+    /* position */
+    margin: 40px auto;
+    padding: 25px;
+    
+    /* appearance */
+    background: rgba(181, 136, 94, .3);
+    border-radius: 5px;
+}
+/* 3rd slide (middle school)*/
+#slideMiddle:before {
+    background-image: url("../media/background_section/middle2.jpg");
+    transform: translateZ(-1px) scale(2);
+}
+/* 4th slide (high school)*/
+#slideHigh {
+    background-image: url("../media/background_section/high1.jpg");
+    z-index: 2;
+}
+/* 5th slide (Chinese high school)*/
+#slideCNHigh:before {
+    background-image: url("../media/background_section/CN_high.jpg");
+    transform: translateZ(-1px) scale(2);
+}
+/* 6th slide (xjtlu)*/
+#slideUni {
+    background-image: url("../media/background_section/uni_school.jpg");
+}
+
+
+/* SLIDEs */
+.slide {
+    /* all slides following the parallax effect
+        are positioned relatively to each other
+        with a height of 100% of the viewport's
+        height and a padding that goes behind other
+        slides of 25% of the viewport's height per side
+    */
+    position: relative;
+    padding: 25vh 10%;
+    min-height: 100vh;
+    width: 100vw;
+    transform-style: inherit;
+    
+    /* appearance */
+    box-sizing: border-box;
+    box-shadow: 0 -1px 10px rgba(0, 0, 0, .7);
+}
+.slide:before {
+    /*  allow the background image to show
+        in the non-fixed slides
+    */
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    
+    /* shadow between slides */
+    box-shadow: 0 0 8px 5px rgba(0, 0, 0, .7);
+}
+.slide, .slide:before {
+    /* the background is set to cover the screen */
+    background: 50% 50% / cover;  
+}
+
+/* IMAGE  */
+.slide img {
+    /* fixed ratio relative to viewport's width */
+    width: 25vw;
+    height: 20vw;
+    
+    position: absolute;
+    top: 50%;
+    left: 35%;
+    
+    border-radius: 5px;
+    background: rgba(9, 82, 86, .7);
+    box-shadow: 0 0 8px 1px rgba(0, 0, 0, .7);
+    
+    transform: translateZ(.20px) scale(.80) 
+        translateX(-94%) translateY(-100%) rotate(3deg);
+}
+.slide img:last-of-type {
+    transform: translateZ(.45px) scale(.55) 
+        translateX(-104%) translateY(-40%) rotate(-6deg);
+}
+.slide:nth-child(even) img {
+    /* even slides have the image on the right */
+    right: 5%;
+    left: auto;
+}
+
+/* FRAMES within the slides with descriptions */
+.frame {
+    /* dimensions */
+    width: 50%;
+    max-width: 500px;
+    
+    padding: 30px;
+    
+    /* appearance */
+    border-radius: 5px;
+    background: rgba(245, 221, 144, .8);
+    box-shadow: 0 0 8px 3px rgba(0, 0, 0, .8);
+    text-align: justify;
+}
+/* even frames are on the left, odd frames on the right */
+.slide:nth-child(even) .frame {
+    margin-left: 0;
+    margin-right: auto;
+}
+.slide:nth-child(odd) .frame {
+    margin-right: 0;
+    margin-left: auto;
+}
+
+
+/* SECTION TITLES */
+.title {
+    /* dimensions (width is all that matters) */
+    width: 100%;
+    
+    /* position */
+    position: relative;
+    margin: 0;
+    padding: 20px 0;
+    z-index: 100;
+    
+    /* appearance */
+    color: #095256;
+    background: #6BBF59;
+    border-bottom: solid 15px #095256;
+}
+
+
+/* INTERESTS FORMATTING */
+#interests {
+    /* follow the flow of the elements in the page */
+    position: relative;
+}
+#interests p {
+    /* dimensions */
+    width: 70%;
+    min-width: 500px;
+    max-width: 1000px;
+    
+    /* position */
+    margin: 150px auto 30px;
+    padding: 40px;
+    
+    /* appearance */
+    border-radius: 5px;
+    background: rgba(107, 191, 89, .3);
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 1);
+    text-align: justify;
+}
+
+
+/*  FOOD GALLERY
+    By default the gallery is 
+set to store 5 images per line
+*/
+#foodGallery {
+    /* dimensions */
+    width: 1200px;
+    
+    /* position */
+    margin: 0 auto;
+    display: block;
+    padding: 0;
+}
+#foodGallery img {
+    /* dimensions */
+    height: 200px;
+    width: 200px;
+    
+    /* inline-block to make
+    images stay together */
+    display: inline-block;
+    margin: 18px;
+    
+    /* round 'em up */
+    border-radius: 50%;
+}
+
+
+/* VIDEOGAMES LIST */
+#interests ul {
+    /* make is span nicely */
+    width: 70%;
+    max-width: 900px;
+    
+    margin: 20px auto;
+    
+    /* remove weird formatting */
+    list-style: none;
+}
+#interests ul li {
+    height: 50px;
+    width: 130px;
+    
+    /* elements sit together */
+    display: inline-table;
+    
+    text-align: center;
+    font-size: 1.3em;
+    padding: 15px;
+    
+    background: rgba(9, 82, 86, .5);
+}
+/* alternate colours */
+#interests ul li:nth-child(even) {
+    background: rgba(245, 221, 144, 1);
+}
+
+
+/* MOVIE GALLERY */
+#movieGallery {
+    /* as large as the screen */
+    position: relative;
+    width: 100%;
+    min-width: 700px;
+    
+    margin: 20px 0 0 0;
+}
+#movieGallery div {
+    /*  first div contains the picture.
+        it is 19.7% of the viewport width
+        so that 5 images can sit together
+    */
+    width: 19.7vw;
+    height: 28vw;
+    
+    /* make images touch each other */
+    margin: -3px;
+    
+    /* put them on the same line */
+    display: inline-block;
+    
+    /* the images contained must always appear nice */
+    background: 50% 50% / cover;
+    overflow: hidden;
+}
+#movieGallery div div {
+    /*  second div is the white overlay that
+        appears on mouse hover
+    */
+    width: inherit;
+    height: inherit;
+    margin: 0;
+    padding: 0;
+    
+    /* it is not displayed until mouse hover */
+    display: none;
+}
+#movieGallery div div a {
+    /* the movie name */
+    width: inherit;
+    height: 5vw;
+    
+    position: absolute;
+    margin: 11vw 0;
+    padding: 2vw 0;
+    
+    font-size: 20px;
+    text-align: center;
+    background: rgba(245, 221, 144, .8);
+    z-index: 3;
+}
+#movieGallery div:hover {
+    /* zoom the background on mouse hover */
+    background-size: 130%;
+}
+#movieGallery div:hover div {
+    /* show the white! */
+    display: block;
+    background: rgba(255, 255, 255, .4);
+    z-index: 2;
+}
+/* all movie images are inserted using the background attribute on the outer div */
+#movieGallery div:nth-child(1) {
+    background-image: url('../media/movies/movie-1.jpg');
+}
+#movieGallery div:nth-child(2) {
+    background-image: url('../media/movies/movie-2.jpg');
+}
+#movieGallery div:nth-child(3) {
+    background-image: url('../media/movies/movie-3.jpg');
+}
+#movieGallery div:nth-child(4) {
+    background-image: url('../media/movies/movie-4.jpg');
+}
+#movieGallery div:nth-child(5) {
+    background-image: url('../media/movies/movie-5.jpg');
+}
+#movieGallery div:nth-child(6) {
+    background-image: url('../media/movies/movie-6.jpg');
+}
+#movieGallery div:nth-child(7) {
+    background-image: url('../media/movies/movie-7.jpg');
+}
+#movieGallery div:nth-child(8) {
+    background-image: url('../media/movies/movie-8.jpg');
+}
+#movieGallery div:nth-child(9) {
+    background-image: url('../media/movies/movie-9.jpg');
+}
+#movieGallery div:nth-child(10) {
+    background-image: url('../media/movies/movie-10.jpg');
+}
+#movieGallery div:nth-child(11) {
+    background-image: url('../media/movies/movie-11.jpg');
+}
+#movieGallery div:nth-child(12) {
+    background-image: url('../media/movies/movie-12.jpg');
+}
+#movieGallery div:nth-child(13) {
+    background-image: url('../media/movies/movie-13.jpg');
+}
+#movieGallery div:nth-child(14) {
+    background-image: url('../media/movies/movie-14.jpg');
+}
+#movieGallery div:nth-child(15) {
+    background-image: url('../media/movies/movie-15.jpg');
+}
+#movieGallery div:nth-child(16) {
+    background-image: url('../media/movies/movie-16.jpg');
+}
+#movieGallery div:nth-child(17) {
+    background-image: url('../media/movies/movie-17.jpg');
+}
+#movieGallery div:nth-child(18) {
+    background-image: url('../media/movies/movie-18.jpg');
+}
+#movieGallery div:nth-child(19) {
+    background-image: url('../media/movies/movie-19.jpg');
+}
+#movieGallery div:nth-child(20) {
+    background-image: url('../media/movies/movie-20.jpg');
+}
+
+
+/* CONTACTS */
+#contacts {
+    /* everything flows */
+    position: relative;
+    width: 100%;
+}
+
+
+/*  TIMETABLE
+    as it's the only table, no need for ID/Class
+*/
+table {
+    /* space under and below the table */
+    width: 810px;
+    
+    margin: 10px auto;
+    
+    font-size: 1.1em;
+	
+    table-layout: fixed;
+}
+table, th, td {
+    /* give single-line border */
+    border: 1px solid black;
+    border-collapse: collapse;
+    
+    text-align: center;
+}
+th, td {
+    /*  give a minimum width of 100px
+        and an height of 50px
+    */
+    width: 100px;
+    height: 50px;
+    
+    padding: 5px 15px;
+}
+tr td:first-child {
+    /* enlarge the first column to fit the time */
+    width: 110px;
+}
+
+/* alternating background for the table header */
+th {
+    background: rgba(107, 191, 89, .7)
+}
+th:nth-child(even) {
+    background: rgba(107, 191, 89, .4)
+}
+th:first-child {
+    /* make the top-left cell disappear */
+    background: white;
+    border-left-color: white;
+    border-top-color: white;
+}
+
+td a {
+    /* hide the class's type popup */
+    display: none;
+}
+td:hover a {
+    /* when hovering on a cell, display class type */
+    display: block;
+}
+
+/* alternating background for the classes */
+.light {
+    background: rgba(245, 221, 144, .7);
+}
+.dark {
+    background: rgba(9, 82, 86, .5);
+}
+
+
+/* CONTACT LIST */
+#contacts p:nth-child(2) {
+    /* dimensions */
+    width: 70%;
+    max-width: 1000px;
+    
+    /* position */
+    margin: 50px auto 30px;
+    padding: 50px;
+    
+    /* appearance */
+    border-radius: 5px;
+    background: rgba(107, 191, 89, .3);
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 1);
+    text-align: justify;
+}
+#contacts div {
+    /*  div containing the picture and the info.
+        at least 400px(img)+500px(info) = 900px wide
+    */
+    width: 800px;
+    
+    position: relative;
+    margin: 20px auto;
+}
+#contacts div img {
+    /* image floats on the very left */
+    width: 175px;
+    
+    position: relative;
+    display: inline-block;
+    float: left;
+}
+#contacts div span {
+    /* make the text bigger */
+    font-size: 1.4em;
+    line-height: 2em;
+    
+    /*  make the a(s) relative and inline-block so
+        that they can sit next to each other
+    */
+    position: relative;
+    display: inline-block;
+    padding: 0;
+    margin: 0 55px;
+}
+#contacts div span:nth-child(2) {
+    /* float one to the left (the right of the image) */
+    float:  left;
+}
+#contacts div span:nth-child(3) {
+    /* float the other to the right... nice! */
+    float:  right;
+}
+#contacts div span a {
+    margin: 0;
+    padding: 0;
+}
+
+#lastLine {
+    /* make the last line appear neat */
+    width: 70%;
+    
+    margin: 30px 15%;
+    display: inline-block;
+    text-align: center;
+}
+
+
+/*
+COLOR SCHEME 
+
+#6BBF59 107, 191, 89	green
+#94CF86 148, 207, 134	light green (mobile menu only)
+#F5DD90 245, 221, 144	dark yellow
+#095256 9, 82, 86	blue
+#B5885E 181, 136, 94	brown
+*/

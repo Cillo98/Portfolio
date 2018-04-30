@@ -1,0 +1,327 @@
+/* The pictures in the gallery are 200px high and wide.
+With a dynamic border of .5%, the mimimum page width to fit 5
+imgesd chicken, steak, fries... There is no limit to his hunger!
+
+food  food  is found by resolving 5*200+6*0.005*X <= X; X=1031 */
+
+@media only screen and (max-width: 1200px) and (min-width: 900px) {
+    
+    #foodGallery {
+        width: 900px;
+    }
+    #foodGallery img {
+        margin: 10px;
+    }
+    #foodGallery img:nth-last-child(1), 
+    #foodGallery img:nth-last-child(2) {
+        margin: 10px 120px;
+    }
+    
+    table {
+        max-width: 900px;
+    }
+}
+
+@media only screen and (max-width: 899px) {
+    
+    #foodGallery {
+        width: 100%;
+    }
+    #foodGallery img {
+        height: 30vw;
+        width: 30vw;
+        margin: 0 auto;
+    }
+    #foodGallery img:nth-last-child(2) {
+        margin: 0 auto;
+    } 
+    #foodGallery img:nth-last-child(1) {
+        margin: 0 31vw;
+    }
+    
+    nav ul, nav:active ul {
+        width: 50%;
+        
+        display: none;
+        
+        position: absolute;
+        right: 30px;
+        top: 45px;
+        padding: 20px;
+        
+        background: #94CF86;
+        border: 5px solid #095256;
+        border-radius: 4px 0 4px 4px;
+    }
+    nav:hover ul {
+        display: block;
+    }
+    nav li {
+        text-align: center;
+        width: 100%;
+        padding: 10px 0;
+        margin: 0;
+    }
+    nav ul li a {
+        color: #095256;
+    }
+    #menu_icon {
+        display: inline-block;
+        margin: 15px;
+    }
+    
+    /* timetable resizing */
+    .hideMe {
+        /* hide Saturday and Sunday */
+        display: none;
+    }
+    table {
+        width: 100%;
+        font-size: .7em;
+        border-color: white;
+        margin: 20px auto;
+		overflow: scroll;
+    }
+    th, td {
+        width: 40px;
+        height: 30px;
+
+        padding: 3px 0px;
+        
+        /* allow text to go onto a new line */
+        white-space:pre-wrap;
+        word-wrap:break-word;
+    }
+    tr td:first-child {
+        /* shrink the first column */
+        width: 50px;
+    }
+    td:last-child:hover a {
+        /* when hovering on a cell, display class type */
+        display: none;
+    }
+    body {
+        width: auto;
+    }
+    
+    h1 {
+        font-size: 7em;
+    }
+}
+
+/* MOBILE PHONES */
+@media only screen and (max-width: 700px) {
+    
+    html {
+        overflow: auto;
+    }
+    body {
+        perspective: none;
+    }
+    
+    h1 {
+        font-size: 4em;
+    }
+    h2 {
+        font-size: 3em;
+    }
+    h3 {
+        font-size: 1.6em;
+    }
+    h4 {
+        font-size: 1.3em;
+    }
+    p {
+        font-size: 1em;
+        line-height: 1.25em;
+    }
+    
+    
+    /*  remove PARALLAX by resetting the transform style
+        and the z-indexes
+    */
+    #slideTop:before {
+        transform: none;
+        z-index: -1;
+    }
+    #slideTop div {
+        margin: -150px auto;
+        z-index: 2;
+    }
+    /* 2nd slide (this dude is awesome)*/
+    #slideIntro {
+        z-index: 1;
+    }
+    #slideIntro div {
+        width: 86%;
+        min-width: 0;
+
+        /* position */
+        margin: auto;
+        padding: 25px;
+
+        /* appearance */
+        background: rgba(181, 136, 94, .3);
+        border-radius: 5px;
+    }
+    /* 3rd slide (middle school)*/
+    #slideMiddle:before {
+        transform: none;
+        z-index: 1;
+    }
+    /* 4th slide (high school)*/
+    #slideHigh {
+        z-index: 1;
+    }
+    /* 5th slide (Chinese high school)*/
+    #slideCNHigh:before {
+        transform: none;
+        z-index: 1;
+    }
+    /* 6th slide (xjtlu)*/
+    #slideUni {
+        z-index: 1;    
+    }
+    
+    /* reset the slides */
+    .slide {
+        /*  as large as the screen width and at
+            least as high as the screen height
+        */
+        width: 100%;
+        height: auto;
+        min-height: 100%;
+        
+        top: 0;
+        
+        z-index: 2;
+    }
+    
+    /* frame&images repositioning */
+    .frame {
+        width: 75%;
+        max-width: none;
+        
+        position: relative;
+        margin: 30px auto;
+        
+        z-index: 1;
+    }
+    .slide:nth-child(even) .frame {
+        margin: auto;
+    }
+    .slide:nth-child(odd) .frame {
+        margin: auto;
+    }
+    
+    .slide img {
+        width: 75%;
+        height: 60%;
+        
+        display: inline-block;
+        position: relative;
+        top: 0;
+        left: 0;
+        
+        margin: 20px 12.5%;
+        
+        transform: none;
+        z-index: 3;
+    }
+    .slide img:last-of-type {
+        transform: none;
+        top: 0;
+        left: 0;
+        
+        margin: 20px 12.5%;
+    }
+    
+    
+    /* restyling of the INTERESTS section */
+    #interests p {
+        width: 70%;
+        min-width: 0;
+        max-width: none;
+        
+        margin: 50px auto 30px;
+    }
+    
+    /* foodgallery */
+    #foodGallery {
+        width: 100%;
+    }
+    #foodGallery img {
+        height: 45vw;
+        width: 45vw;
+        margin: 0;
+    }
+    #foodGallery img:nth-last-child(1) {
+        margin: 0;
+    }
+    
+    /* videogame list */
+    #interests ul {
+        /* make is span nicely */
+        width: 100%;
+        max-width: none;
+
+        margin: 20px auto;
+        padding: 0;
+    }
+    #interests ul li {
+        height: 50px;
+        width: 48%;
+
+        /* elements sit together */
+        display: inline-table;
+
+        text-align: center;
+        font-size: 1.2em;
+        padding: 15px 0;
+        margin-left: 1%;
+    }
+    /* new color alternating pattern */
+    #interests ul li:nth-child(4n),
+    #interests ul li:nth-child(4n+1) {
+        background: rgba(9, 82, 86, .5);
+    }
+    #interests ul li:nth-child(4n+2),
+    #interests ul li:nth-child(4n+3) {
+        background: rgba(245, 221, 144, 1);
+    }
+    
+    /* movie gallery adjustment */
+    #movieGallery {
+        /* as large as the screen */
+        min-width: 0;
+
+        margin: 20px auto 0;
+    }
+    #movieGallery div {
+        width: 20.5vw;
+        margin: -1%;
+    }
+	#movieGallery div div a {
+		font-size: .8em;
+	}
+    
+    
+    /* CONTACTS final part */
+    #contacts div {
+        /* auto size */
+        width: 100%;
+        margin: 0;
+    }
+    #contacts div img {
+        /* centered and nice */
+        width: 30%;
+        
+        display: block;
+        float: none;
+        margin: 0 auto 20px;
+    }
+    #contacts div span {
+        font-size: 1em;
+        margin: 0 20px;
+    }
+}
